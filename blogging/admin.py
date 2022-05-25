@@ -12,21 +12,10 @@ class CategoryInLine(admin.TabularInline):
 @admin.register(Post)  # registers our PostAdmin using a decorator
 class PostAdmin(admin.ModelAdmin):
     """A ModelAdmin for Post. Overwrites the default admin interface."""
-    # date_hierarchy = 'published_date'
-    # empty_value_display = '-empty-'
     inlines = [CategoryInLine, ]
 
 
-class CategoryAdmin(admin.ModelAdmin):
-    """A ModelAdmin for Category. Declares included fields from model"""
-    fields = ('name', 'description', )
-    inlines = [CategoryInLine, ]
-
-
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     """A ModelAdmin for Category. Declares excluded fields from model"""
     exclude = ('posts', )
-
-
-admin.site.register(Category, CategoryAdmin)  # registers our PostAdmin
-
