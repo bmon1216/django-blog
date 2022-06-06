@@ -3,7 +3,7 @@ import os
 import dj_database_url
 
 # import everything from the current folder where heroku.py is
-from . import *
+from .settings import *
 
 DATABASES = {
     "default": dj_database_url.config(
