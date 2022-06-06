@@ -1,3 +1,8 @@
+"""
+Title:      models.py
+Desc:       Models file for Blogging app in Django Project
+"""
+
 from django.db import models
 from django.contrib.auth.models import User
 
