@@ -61,7 +61,7 @@ class FrontEndTestCase(TestCase):
     def test_list_only_published(self):
         response = self.client.get("/")
         response_text = response.content.decode(response.charset)
-        self.assertTrue("Recent Posts" in response_text)
+        self.assertTrue("Latest Posts" in response_text)
 
         for count in range(1, 11):
             title = "Post %d Title" % count
