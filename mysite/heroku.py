@@ -2,7 +2,6 @@ import os
 
 import dj_database_url
 
-# import everything from the current folder where heroku.py is
 from .settings import *
 
 DATABASES = {
@@ -15,6 +14,9 @@ DEBUG = False
 TEMPLATE_DEBUG = False
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 SECRET_KEY = os.environ.get("SECRET_KEY")
-ALLOWED_HOST = ["*"]
+ALLOWED_HOSTS = ["*"]
 
-MIDDLEWARE = ("whitenoise.middleware.WhiteNoiseMiddleware", *MIDDLEWARE)
+MIDDLEWARE = (
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    *MIDDLEWARE,
+)
