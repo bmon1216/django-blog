@@ -7,7 +7,6 @@ from blogging.models import Post, Category
 
 
 class CategoryTestCase(TestCase):
-
     def test_string_representation(self):
         expected = "A Category"
         c1 = Category(name=expected)
@@ -17,7 +16,10 @@ class CategoryTestCase(TestCase):
 
 class PostTestCase(TestCase):
     """Tests for testing the backend"""
-    fixtures = ['blogging_test_fixture.json', ]
+
+    fixtures = [
+        "blogging_test_fixture.json",
+    ]
 
     def setUp(self):
         self.user = User.objects.get(pk=1)
@@ -33,7 +35,7 @@ class FrontEndTestCase(TestCase):
     """Tests for testing the front end"""
 
     # the fixtures are found in blogging/fixtures
-    fixtures = ['blogging_test_fixture.json']
+    fixtures = ["blogging_test_fixture.json"]
 
     def setUp(self):
         self.now = datetime.datetime.utcnow().replace(tzinfo=utc)
@@ -44,9 +46,11 @@ class FrontEndTestCase(TestCase):
 
         # create multiple dummy posts
         for count in range(1, 11):
-            post = Post(title="Post %d Title" % count,
-                        text="foo",
-                        author=author,)
+            post = Post(
+                title="Post %d Title" % count,
+                text="foo",
+                author=author,
+            )
 
             # adjust the 'time' on the first few posts
             if count < 6:
@@ -55,7 +59,7 @@ class FrontEndTestCase(TestCase):
             post.save()
 
     def test_list_only_published(self):
-        response = self.client.get('/')
+        response = self.client.get("/")
         response_text = response.content.decode(response.charset)
         self.assertTrue("Recent Posts" in response_text)
 
@@ -71,10 +75,9 @@ class FrontEndTestCase(TestCase):
         for count in range(1, 11):
             title = "Post %d Title" % count
             post = Post.objects.get(title=title)
-            response = self.client.get('/posts/%d' % post.pk)
+            response = self.client.get("/posts/%d" % post.pk)
             if count < 6:
                 self.assertEqual(response.status_code, 200)
                 self.assertContains(response, title)
             else:
                 self.assertEqual(response.status_code, 404)
-
