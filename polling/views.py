@@ -22,8 +22,8 @@ def detail_view(request, poll_id):
             poll.score -= 1
         poll.save()
 
-    context = {'poll': poll}
-    return render(request, 'polling/detail.html', context)
+    context = {"poll": poll}
+    return render(request, "polling/detail.html", context)
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - #
@@ -52,14 +52,16 @@ class ListView:  # switched to _old so that we can use the Django Built-in
 
 class PollListView(ListView):
     """A view inheriting from Django's generic ListView"""
+
     model = Poll
-    template_name = 'polling/list.html'
+    template_name = "polling/list.html"
 
 
 class PollDetailView(DetailView):
     """A view inheriting from Django's generic DetailView"""
+
     model = Poll
-    template_name = 'polling/detail.html'
+    template_name = "polling/detail.html"
 
     def post(self, request, *args, **kwargs):
         """Handles POST requests for the Polling app"""
@@ -72,4 +74,4 @@ class PollDetailView(DetailView):
         poll.save()
 
         context = {"object": poll}
-        return render(request, 'polling/detail.html', context)
+        return render(request, "polling/detail.html", context)
