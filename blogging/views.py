@@ -14,6 +14,7 @@ from blogging.models import Post, Category
 
 class BlogListView(ListView):
     """A view inheriting from Django's generic ListView"""
+
     queryset = Post.objects.exclude(published_date__exact=None).order_by(
         "-published_date"
     )
@@ -22,12 +23,13 @@ class BlogListView(ListView):
 
 class BlogDetailView(DetailView):
     """A view inheriting from Django's generic DetailView"""
+
     queryset = Post.objects.exclude(published_date__exact=None)
     template_name = "blogging/detail.html"
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = User.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 

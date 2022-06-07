@@ -40,7 +40,7 @@ class LatestEntriesFeed(Feed):
     description = "Updates on all the latest VG, Tech, and Python news"
 
     def items(self):
-        return Post.objects.order_by('-published_date')[:5]
+        return Post.objects.order_by("-published_date")[:5]
 
     def item_title(self, item):
         return item.title
@@ -50,4 +50,4 @@ class LatestEntriesFeed(Feed):
 
     # item_link is only needed if Post has no get_absolute_url method.
     def item_link(self, item):
-        return reverse('blog_detail', args=[item.pk])
+        return reverse("blog_detail", args=[item.pk])
