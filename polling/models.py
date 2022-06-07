@@ -1,4 +1,6 @@
-# polling/models.py
+"""
+Title:      models.py
+"""
 from django.db import models
 
 
