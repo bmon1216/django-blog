@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.github",  # new
     "polling",
     "blogging",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -112,8 +113,6 @@ SITE_ID = 1
 
 ACCOUNT_EMAIL_VERIFICATION = "none"
 
-LOGIN_REDIRECT_URL = "/"
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -133,3 +132,8 @@ USE_TZ = True
 STATIC_URL = "/static/"
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
