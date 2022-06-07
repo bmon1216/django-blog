@@ -1,5 +1,6 @@
 {# mysite/templates/base.html #}
 {% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,10 +11,12 @@
     <div id="header">
       <ul id="control-bar">
         {% if user.is_authenticated %}
+        <p>Welcome {{ user.username }}</p>
         {% if user.is_staff %}<li><a href="{% url 'admin:index' %}">admin</a></li>{% endif %}
           <li><a href="{% url 'logout' %}">logout</a></li>
         {% else %}
-          <li><a href="{% url 'login' %}">login</a></li>
+        <li><a href="{% url 'login' %}">Login</a></li>
+        <li><a href="{% provider_login_url 'github' %}">Sign Up</a></li>
         {% endif %}
       </ul>
     </div>
