@@ -37,4 +37,6 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(next_page="/"), name="logout"),
     path("api/", include(router.urls)),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
+    path("members/", include("django.contrib.auth.urls")),  # added with codemy
+    path("members/", include("members.urls")),  # added with codemy
 ]

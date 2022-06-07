@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.github",  # new
     "polling",
     "blogging",
+    "members",  # added with codemy
     "rest_framework",
 ]
 

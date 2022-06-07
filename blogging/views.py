@@ -3,13 +3,15 @@ Title:      views.py
 """
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 
 from rest_framework import viewsets
 from rest_framework import permissions
-from .serializers import UserSerializer, PostSerializer, CategorySerializer
 
 from blogging.models import Post, Category
+from .serializers import UserSerializer, PostSerializer, CategorySerializer
 
 
 class BlogListView(ListView):
@@ -44,3 +46,24 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class AddPostView(CreateView):
+    model = Post
+    template_name = "blogging/add_post.html"
+    fields = "__all__"
+
+
+class UpdatePostView(UpdateView):
+    model = Post
+    template_name = "blogging/update_post.html"
+    fields = [
+        "title",
+        "text",
+    ]
+
+
+class DeletePostView(DeleteView):
+    model = Post
+    template_name = "blogging/delete_post.html"
+    success_url = reverse_lazy("blog_index")

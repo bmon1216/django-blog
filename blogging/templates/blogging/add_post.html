@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Add Blog Post {% endblock %}
+{% block content %}
+<a class="backlink" href="/">Back</a>
+{% if user.is_authenticated %}
+    <br/><br/>
+    <h1>Add Post</h1>
+    <hr>
+
+    <table>
+    <div class="form-group">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_table }}
+
+        </form>
+    </div>
+    </table>
+    <button>Submit</button>
+
+{% else %}
+<br/><br/><br/>
+Please Login or Register to view page.
+{% endif %}
+{% endblock %}
