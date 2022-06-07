@@ -1,3 +1,6 @@
+"""
+Title:      views.py
+"""
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
