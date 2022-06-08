@@ -7,16 +7,13 @@
     <h1>Add Post</h1>
     <hr>
 
-    <table>
     <div class="form-group">
         <form method="POST">
             {% csrf_token %}
-            {{ form.as_table }}
-
+            {{ form.as_p }}
+            <button>Submit</button>
         </form>
     </div>
-    </table>
-    <button>Submit</button>
 
 {% else %}
 <br/><br/><br/>
