@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a class="backlink" href="/">Home</a>
+<a class="backlink" href="/">Back</a>
 <h1>{{ object.title }}</h1>
 <p class="byline">
   Posted by {{ object.author.username }} &mdash; {{ object.published_date }}
@@ -9,9 +9,14 @@
 <div class="post-body">
   {{ object.text }}
 </div>
+<hr>
+<h2>{{ 'Categories' }}</h2>
 <ul class="categories">
   {% for category in object.categories.all %}
     <li>{{ category }}</li>
   {% endfor %}
 </ul>
+{% if user.is_authenticated and user.is_staff %}
+  <small><a href="{% url 'delete_post' post.pk %}">Delete Post</a></small>
+{% endif %}
 {% endblock %}
